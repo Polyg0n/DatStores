@@ -11,7 +11,6 @@
 #include "include/datastream.h"
 
 int main(int argc, const char * argv[]) {
-    systempoint("");
-    printf("Hello, World!\n");
+    systempoint("sys_formatting");
     return 0;
 }
