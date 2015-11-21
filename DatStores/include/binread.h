@@ -21,7 +21,7 @@
 #include "types.h"
 
 
-//  Defines a modifiable bit mask
+//  Defines a "can modify" flag to all bit mask functions
 #define _BMASK
 
 

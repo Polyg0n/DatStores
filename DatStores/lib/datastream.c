@@ -7,6 +7,29 @@
 //
 
 #include <stdio.h>
+#include <string.h>
+
 
 #include "../include/datastream.h"
+#include "../include/econn.h"
 
+BOOL systempoint(const char *__inst){
+    
+    
+    if (__inst == NULL || strcmp(__inst, " ")) {
+        printf("ERROR:         Cannot pass null instruction to *__inst!\n\
+ERROR:         Exiting BOOL systempoint(...) at %x\n\n", (int)&__inst);
+        goto error_return;
+    }
+    
+    
+    
+error_return:
+    if(PASSED_WITH_ERROR) return 2;
+    
+warning_return:
+    if(PASSED_WITH_WARNING) return 1;
+    
+passive_return:
+    return 0;
+}

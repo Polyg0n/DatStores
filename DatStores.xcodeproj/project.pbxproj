@@ -26,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		D13AB8471C00E0FB00B33E87 /* internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = internal.h; sourceTree = "<group>"; };
+		D13AB8481C00E5B600B33E87 /* econn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = econn.h; sourceTree = "<group>"; };
 		D14BF0691BFEF93900B31FA6 /* datastream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = datastream.h; sourceTree = "<group>"; };
 		D14BF06A1BFEFAA800B31FA6 /* datastream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = datastream.c; sourceTree = "<group>"; };
 		D1B397CE1BFECD1C0033022A /* types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
@@ -81,6 +82,7 @@
 				D1B397CF1BFED2730033022A /* crtdef.h */,
 				D14BF0691BFEF93900B31FA6 /* datastream.h */,
 				D13AB8471C00E0FB00B33E87 /* internal.h */,
+				D13AB8481C00E5B600B33E87 /* econn.h */,
 			);
 			path = include;
 			sourceTree = "<group>";

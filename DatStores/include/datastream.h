@@ -49,4 +49,17 @@ long procstore(struct datbox *box, packed_t packlen_addr);
 
 
 
+/**
+ * \brief Point an instruction to a data stream
+ *
+ * \param *__inst - Instruction to pass
+ * \param *__databoxes - Packages that contain current data in a stream
+ *
+ * \return 2 IF instruction did not pass due to errors
+ * \return 1 IF instruction was passed but with warnings
+ * \return 0 IF instruction was successfully passed
+ */
+BOOL systempoint(const char *__inst);
+
+
 #endif /* DATASTREAM_H */
