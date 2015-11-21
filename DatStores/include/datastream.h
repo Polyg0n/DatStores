@@ -40,7 +40,6 @@ struct datbox
 } __attribute__((packed));
 
 
-
 extern int initstr(const char *cvcmd[]);
 
 

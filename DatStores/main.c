@@ -11,6 +11,18 @@
 #include "include/datastream.h"
 
 int main(int argc, const char * argv[]) {
-    systempoint("sys_formatting");
+    char exitc;
+    while (exitc != 'Y' || exitc != 'y') {
+        printf("Enter command to pass > ");
+        char comd;
+        scanf("%s", &comd);
+        systempoint(&comd);
+        printf("Run command structure again? > ");
+        scanf("%s", &exitc);
+        
+        if(exitc == 'N' || exitc == 'n') {
+            break;
+        }
+    }
     return 0;
 }
