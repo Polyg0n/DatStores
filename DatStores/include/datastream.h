@@ -62,4 +62,7 @@ long procstore(struct datbox *box, packed_t packlen_addr);
 BOOL systempoint(const char *__inst);
 
 
+
+
+
 #endif /* DATASTREAM_H */

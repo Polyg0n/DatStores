@@ -19,36 +19,27 @@ BOOL systempoint(const char *__inst){
         
         printf("\
 ERROR:         Cannot pass null instruction to <const char>*__inst!\n\
-ERROR:         Exiting BOOL systempoint(...) at %x\n\n", (int)&__inst);
+ERROR:         Exiting BOOL systempoint(...) at 0x%x\n\n", (int)&__inst);
         
-        goto error_return;
-    } else if (strstr(__inst, "sys_")){
+        return 2;
+        
+    } else if (strstr(__inst, "sys_")) {
         
         printf("\
 Instruction being passed:   %s\n\
-At address:                 %x\n\n", __inst, (int)&__inst);
-        goto passive_return;
-        
-    }
-    
-    
-    
-error_return:
-    if(PASSED_WITH_ERROR) return 2;
-    
-warning_return:
-    
-    printf("\
-WARNING:       Instruction has been passed but with warnings!\n\
-WARNING:       See logfile for more info...\n\n");
-    
-    if(PASSED_WITH_WARNING) return 1;
-    
-passive_return:
-    
-    printf("\
+At address:                 0x%x\n\n", __inst, (int)&__inst);
+
+        printf("\
 System instruction has been passed successfully!\n\
 Continuing...\n\n");
-    
-    return 0;
+        return 0;
+        
+    } else {
+        
+        printf("\
+               WARNING:       Instruction has been passed but with warnings!\n\
+               WARNING:       See logfile for more info...\n\n");
+        return 1;
+        
+    }
 }
