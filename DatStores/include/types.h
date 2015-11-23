@@ -1,7 +1,8 @@
 #ifndef TYPES_H
 #define TYPES_H
 
-typedef unsigned int size_t;
+typedef size_t packed_t;
+//typedef unsigned int size_t;
 typedef int BOOL;
 
 typedef unsigned long  uqword_t;
@@ -21,5 +22,15 @@ typedef          char  byte_t;
 #define ANSI_COLOR_MAGENTA "\x1b[35m"
 #define ANSI_COLOR_CYAN    "\x1b[36m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
+
+
+#define NRX  0x01
+#define NRC  0x02
+#define NCA  0x03
+#define NCB  0x04
+
+
+#define __STOP // Hammer time
+
 
 #endif /* TYPES_H */
