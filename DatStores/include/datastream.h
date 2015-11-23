@@ -20,70 +20,73 @@
 #include <stdio.h>
 #include "types.h"
 
-
+//  Bad call key string
 #define DATASTREAM_BADCALL 0x0BADCA11
 
 
-//  Modifiable size length
+//  Modifiable package length
 typedef void (*packlen)(int *__slen, int *__nlen);
 
 
 typedef enum
 {
     //  USE AS PLACER FOR NO OPERATION IN STREAM
-    OP_NO_OP     = 0xCCFF,
-    OP_NO_READ   = 0x00,
+    OP_NO_OP     = 0xCCFF,  // OP has no instruction
+    OP_NO_READ   = 0x00,    // OP has no reading at the moment
     
-    OP_READ_FULL = 0x01,
-    OP_READ_PART = 0x02,
-    OP_READ_SEED = 0x03,
-    OP_READ_POP  = 0x04,
-    OP_PUSH_SDD  = 0x05,
+    OP_READ_FULL = 0x01,    // OP read full instruction
+    OP_READ_PART = 0x02,    // OP read part of the instruction
+    OP_READ_SEED = 0x03,    // OP read the seed of the instruction
+    OP_READ_POP  = 0x04,    // OP read the pop address
+    OP_PUSH_SDD  = 0x05,    // OP read the Static Destruction Designator
     
-    OP_CALL_SEED = 0xA1,
-    OP_CALL_FULL = 0xA2,
-    OP_CALL_DEAD = 0xA3,
-    OP_CALL_PART = 0xA4,
+    OP_CALL_SEED = 0xA1,    // OP called instruction seed
+    OP_CALL_FULL = 0xA2,    // OP called full instruction
+    OP_CALL_DEAD = 0xA3,    // OP called a dead instruction (also could be missing/un-referenced address?)
+    OP_CALL_PART = 0xA4,    // OP called part of the instruction
     
     // USE WITH NO LINK
-    OP_FULL_PART = 0xB1,
+    OP_FULL_PART = 0xB1,    // OP read full part (i.e fragmented but complete fragment)
+                            //                      ^ can piece together? ^
 } _opaque_op_flags_t;
+
 
 typedef struct
 {
-    uword_t     othread_start;
-    uword_t     othread_end;
-    uword_t     othread_jmp;
-    uword_t     othread_cmp;
-    uword_t     othread_non_cond_jmp;
+    uword_t     othread_start;          // Opaque thread starting address
+    uword_t     othread_end;            // Opaque thread ending address
+    uword_t     othread_jmp;            // Opaque jump addres
+    uword_t     othread_cmp;            // Opaque compare address
+    uword_t     othread_non_cond_jmp;   // Opaque non condition jump address
     
-    packed_t    othread_no_start_cond;
+    packed_t    othread_no_start_cond;  // Opqaue no starting conditional
     
-    BOOL        has_forward  : 1;
-    BOOL        will_forward : 1;
+    BOOL        has_forward  : 1;       // Has forward address to compare before main processes handler
+    BOOL        will_forward : 1;       // Will forward self address to compare with main process handler
     
+    //  Store same addr
     union {
-        ubyte_t     _hold_pack;
-        ubyte_t     _dump_pack;
-        byte_t      _hold_pack_upper;
-        byte_t      _dump_pack_upper;
+        ubyte_t     _hold_pack;         // Holding package
+        ubyte_t     _dump_pack;         // Dump package
+        byte_t      _hold_pack_upper;   // Hold the upper bit package
+        byte_t      _dump_pack_upper;   // Dump the upper bit package
     };
 } _opaque_ops_t;
 
 
 struct datbox
 {
-    unsigned long  _boxdata;
-    word_t         _boxlen;
-    packed_t       _nil_formats;
-    word_t         _system;
-} __attribute__((packed));
+    unsigned long  _boxdata;        // Data size per box
+    word_t         _boxlen;         // Data length per box
+    packed_t       _nil_formats;    // Nil-able formats
+    word_t         _system;         // System data
+} __attribute__((packed));          // Pack this S.O.B
 
-
+//  Field sectors
 struct _fieldsec
 {
-    word_t          _fieldlen;
-    word_t          _typelen;
+    word_t          _fieldlen;  // Field data length
+    word_t          _typelen;   // Type data length
     
     
     //  If we're running hot and mean
@@ -95,10 +98,10 @@ struct _fieldsec
 
 
 //  Init a string space
-extern int  initstr(const char *cvcmd[]);
+extern int  initstr(cbyte_t *cvcmd[]);
 
 //  Destroy a string space
-extern int  desstr(const char *cvcmd[]);
+extern int  desstr(cbyte_t *cvcmd[]);
 
 //  Move typename to another space via its name
 extern void movname(char *__virtual, char *__vrmove);
@@ -128,23 +131,36 @@ BOOL systempoint(const char *__inst);
 //                                                     //
 /////////////////////////////////////////////////////////////////////////////////
 
+/*
+ *  If defined to "1" kernel will force wait of new commands 
+ *  instead of multithreading them.
+ */
+#define _KERN_WAITS 0
+
+
 //  Can operate on inline operations
 //  TODO:   Monitor low level binary from I/O streams?
-volatile ubyte_t ASM(const char __inst, const char *__op,
-                     const char *__reg_dest, const char *__reg_src);
+volatile ubyte_t ASM
+(cbyte_t __inst, cbyte_t *__op, cbyte_t *__reg_dest, cbyte_t *__reg_src);
 
 
-extern int movword(word_t *_s1, word_t *_s2);   // Move word to reg
-extern int delword(word_t *_s1, word_t *_s2);   // Delete word to reg
-extern packed_t _minimum_lendef(_opaque_ops_t *_ops, struct _fieldsec *fsec, dword_t *_un);
-extern uword_t _move_lendef(_opaque_ops_t *_ops, byte_t *bytesec);
+extern int movword
+(word_t *_s1, word_t *_s2);                     // Move word to reg
+
+extern int delword
+(word_t *_s1, word_t *_s2);                     // Delete word to reg
 
 
+extern packed_t _minimum_lendef                 // Minimum length definition
+(_opaque_ops_t *_ops, struct _fieldsec *fsec, dword_t *_un);
 
 
+extern uword_t _move_lendef
+(_opaque_ops_t *_ops, byte_t *bytesec);         // Move length definition
 
 
-
+extern byte_t cmpbyte
+(char* __byte, char* __byte_cmp);               // Compare byte sequence
 
 
 

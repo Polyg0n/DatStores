@@ -13,7 +13,7 @@ typedef unsigned short uword_t;
 typedef          short word_t;
 typedef unsigned char  ubyte_t;
 typedef          char  byte_t;
-
+typedef const char     cbyte_t;
 
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"
@@ -32,5 +32,7 @@ typedef          char  byte_t;
 
 #define __STOP // Hammer time
 
+#define FOREACH_CHAR(ptrvar, strvar) char* ptrvar; for( ptrvar=strvar ; (*ptrvar) != '\0' ; *ptrvar++ )
+#define FOREACH_INT(intpvar, intary) int* intpvar; for( intpvar=intary ; (intpvar < (sizeof(intary)/sizeof(intary[0]))) ; intpvar++)
 
 #endif /* TYPES_H */
