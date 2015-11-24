@@ -186,7 +186,16 @@ extern byte_t cmpbyte
     (dword_t *_byte_inner, dword_t *_byte_outer) _BMASK;
 #endif
 
+//  Seek out free address
+uword_t skaddr
+(ubyte_t *aptr);
 
+//  Delete used address 
+//  Warning:
+//      Will destroy any data inside of said register.
+//      You have been warned!
+uword_t dladdr
+(byte_t& aptr);
 
 
 
