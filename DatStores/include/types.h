@@ -2,9 +2,8 @@
 #define TYPES_H
 
 typedef size_t packed_t;
-//typedef unsigned int size_t;
+typedef size_t masksize_t;
 typedef int BOOL;
-
 typedef unsigned long  uqword_t;
 typedef          long  qword_t;
 typedef unsigned int   udword_t;
@@ -23,14 +22,13 @@ typedef const char     cbyte_t;
 #define ANSI_COLOR_CYAN    "\x1b[36m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
-
 #define NRX  0x01
 #define NRC  0x02
 #define NCA  0x03
 #define NCB  0x04
 
-
 #define __STOP // Hammer time
+#define _BMASK //  Defines a "can modify" flag to all bit mask functions
 
 #define FOREACH_CHAR(ptrvar, strvar) char* ptrvar; for( ptrvar=strvar ; (*ptrvar) != '\0' ; *ptrvar++ )
 #define FOREACH_INT(intpvar, intary) int* intpvar; for( intpvar=intary ; (intpvar < (sizeof(intary)/sizeof(intary[0]))) ; intpvar++)

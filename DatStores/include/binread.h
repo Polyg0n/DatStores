@@ -21,12 +21,7 @@
 #include "types.h"
 
 
-//  Defines a "can modify" flag to all bit mask functions
-#define _BMASK
 
-
-typedef size_t masksize_t;
-typedef unsigned char u8;
 
 
 typedef struct
@@ -80,9 +75,9 @@ masksize_t readmask(bin_modes *binaryModes);
 
 
 //  Boolean returns
-extern bool canCallMode(bin_modes *bin) _BMASK;     //  Checks for call masking mode
-extern bool setCallMode(bin_modes *bin);            //  Sets call masking mode
-extern bool movCallMode(bin_modes *bin);            //  Moves call masking mode
+extern bool canCallMode(bin_modes *bin); //  Checks for call masking mode
+extern bool setCallMode(bin_modes *bin); //  Sets call masking mode
+extern bool movCallMode(bin_modes *bin); //  Moves call masking mode
 
 
 //  CRTD Standard I/O

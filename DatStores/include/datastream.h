@@ -20,13 +20,15 @@
 #include <stdio.h>
 #include "types.h"
 
+
+
+
 //  Bad call key string
 #define DATASTREAM_BADCALL 0x0BADCA11
 
 
 //  Modifiable package length
 typedef void (*packlen)(int *__slen, int *__nlen);
-
 
 typedef enum
 {
@@ -82,6 +84,7 @@ struct datbox
     word_t         _system;         // System data
 } __attribute__((packed));          // Pack this S.O.B
 
+
 //  Field sectors
 struct _fieldsec
 {
@@ -96,16 +99,14 @@ struct _fieldsec
     #endif
 };
 
+#pragma mark - String Controllers
+extern int  initstr(cbyte_t *cvcmd[]);                //  Init a string space
+extern int  desstr(cbyte_t *cvcmd[]);                 //  Destroy a string space
+extern void movname(char *_virtual, char *_vrmove); //  Move typename to another space via its name
 
-//  Init a string space
-extern int  initstr(cbyte_t *cvcmd[]);
 
-//  Destroy a string space
-extern int  desstr(cbyte_t *cvcmd[]);
 
-//  Move typename to another space via its name
-extern void movname(char *__virtual, char *__vrmove);
-
+#pragma mark - System/Process Handlers
 // INTERNAL:
 long procstore(struct datbox *box, packed_t packlen_addr);
 
@@ -127,9 +128,12 @@ BOOL systempoint(const char *__inst);
 
 /////////////////////////////////////////////////////////////////////////////////
 //                                                     //
-//             Primary low level controller defs       //     Version: 1.0.1
+//             Primary Low Level Controller Defs       //     Version: 1.0.1
 //                                                     //
 /////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - Low Level Controllers
+
 
 /*
  *  If defined to "1" kernel will force wait of new commands 
@@ -139,10 +143,9 @@ BOOL systempoint(const char *__inst);
 
 
 //  Can operate on inline operations
-//  TODO:   Monitor low level binary from I/O streams?
+//  TODO: Monitor low level binary from I/O streams?
 volatile ubyte_t ASM
 (cbyte_t __inst, cbyte_t *__op, cbyte_t *__reg_dest, cbyte_t *__reg_src);
-
 
 extern int movword
 (word_t *_s1, word_t *_s2);                     // Move word to reg
@@ -150,19 +153,38 @@ extern int movword
 extern int delword
 (word_t *_s1, word_t *_s2);                     // Delete word to reg
 
-
-extern packed_t _minimum_lendef                 // Minimum length definition
-(_opaque_ops_t *_ops, struct _fieldsec *fsec, dword_t *_un);
-
+extern packed_t _minimum_lendef
+(_opaque_ops_t *_ops, struct _fieldsec *fsec, dword_t *_un); // Minimum length definition
 
 extern uword_t _move_lendef
 (_opaque_ops_t *_ops, byte_t *bytesec);         // Move length definition
 
-
 extern byte_t cmpbyte
 (char* __byte, char* __byte_cmp);               // Compare byte sequence
 
+#pragma mark -
 
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+//                                                     //
+// END         Primary Low Level Controller Defs       //     Version: 1.0.1    END //
+//                                                     //
+//////////////////////////////////////////////////////////////////////////////////////
+
+
+
+//  If we don't have any explicitly defined addressing space
+#ifdef __NO_DEFINED_ADDR_SPACE__
+    //  We use this bad boy
+    extern void __create_system_byte
+    (word_t *_byte_inner, word_t *_byte_outer) _BMASK;
+#else
+    //  If not... Well... We go here...
+    //  Shouldn't you know control flow?  \( ._.)/
+    extern void __create_system_byte
+    (dword_t *_byte_inner, dword_t *_byte_outer) _BMASK;
+#endif
 
 
 

@@ -30,14 +30,15 @@ ERROR:         Exiting BOOL systempoint(...) at 0x%x\n\n", (int)&__inst);
         
         printf("\
 Instruction being passed:   %s\n\
-At address:                 0x%x\n\n", __inst, (int)&__inst);
+At address:                 0x%x\n\n", __inst, (dword_t)&__inst);
 
         printf("\
 System instruction has been passed successfully!\n\
 Continuing...\n\n");
         
         
-        FILE *f= fopen("../syspack.txt", "w");
+        FILE *f;
+        f = fopen("syspack.txt", "w");
         if (f == NULL) {
             printf("ERROR: File could not be created or read...\n");
             printf("Error: %s\n", strerror(errno));
@@ -45,8 +46,10 @@ Continuing...\n\n");
         
         
             fprintf(f, "%s\n", __inst);
+        if (fclose(f)) {
             printf("Successfully wrote data to file. Exiting...\n\n");
-            fclose(f);
+        }
+        
         
         
         return 0;
@@ -68,6 +71,7 @@ packed_t _minimum_lendef(_opaque_ops_t *_ops, struct _fieldsec *fsec, dword_t *_
     
     for(int i=0;i<16;i++) {
         _ops->_dump_pack_upper++;
+        fsec->_typelen = 0x21FF;
     }
     
     return (unsigned long)_un;
