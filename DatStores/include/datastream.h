@@ -102,7 +102,7 @@ struct _fieldsec
 #pragma mark - String Controllers
 extern int  initstr(cbyte_t *cvcmd[]);                //  Init a string space
 extern int  desstr(cbyte_t *cvcmd[]);                 //  Destroy a string space
-extern void movname(char *_virtual, char *_vrmove); //  Move typename to another space via its name
+extern void movname(char *_virtual, char *_vrmove);   //  Move typename to another space via its name
 
 
 
@@ -190,19 +190,6 @@ extern byte_t cmpbyte
 //  Seek out free address
 uword_t skaddr
 (ubyte_t *aptr);
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
