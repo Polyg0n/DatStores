@@ -13,13 +13,15 @@
 //          I don't care it's not my problem, I'm simply the red-eyed breaker of things-
 //          that developed this software...
 //
-
+//  ================================================================================================
+//
+//  datastream.h -- Used for main data I/O pipes
+//                  Do not compile in strict mode
 #ifndef DATASTREAM_H
 #define DATASTREAM_H
 
 #include <stdio.h>
 #include "types.h"
-
 
 
 
@@ -29,6 +31,7 @@
 
 //  Modifiable package length
 typedef void (*packlen)(int *__slen, int *__nlen);
+
 
 typedef enum
 {
@@ -144,12 +147,36 @@ BOOL systempoint(const char *__inst);
 
 //  Can operate on inline operations
 //  TODO: Monitor low level binary from I/O streams?
+
+/**
+ * \brief Insert ASM command to stream quickly via C-call
+ *
+ * \param __inst - Instruction to pass
+ * \param *__ops - Operation to perform
+ * \param *__reg_dest - Register destination
+ * \param *__reg_src - Register source
+ *
+ * \return State based upon instruction
+ */
 volatile ubyte_t ASM
 (cbyte_t __inst, cbyte_t *__op, cbyte_t *__reg_dest, cbyte_t *__reg_src);
 
+
+/**
+ * \brief Move operational word
+ *
+ * \param *_s1 - State 1
+ * \param *_s2 - State 2
+ *
+ * \return State based upon if word was moved or not
+ */
 extern int movword
 (word_t *_s1, word_t *_s2);                     // Move word to reg
 
+
+/**
+ *
+ */
 extern int delword
 (word_t *_s1, word_t *_s2);                     // Delete word to reg
 

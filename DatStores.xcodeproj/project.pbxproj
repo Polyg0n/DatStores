@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D13574531C0CA8D00064BD41 /* u_public.c in Sources */ = {isa = PBXBuildFile; fileRef = D13574521C0CA8D00064BD41 /* u_public.c */; };
 		D14BF06B1BFEFAA800B31FA6 /* datastream.c in Sources */ = {isa = PBXBuildFile; fileRef = D14BF06A1BFEFAA800B31FA6 /* datastream.c */; };
 		D1ED90F11BFDAFA0007FD8F9 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = D1ED90F01BFDAFA0007FD8F9 /* main.c */; };
 		D1ED90FB1BFDB0CF007FD8F9 /* binread.c in Sources */ = {isa = PBXBuildFile; fileRef = D1ED90FA1BFDB0CF007FD8F9 /* binread.c */; };
@@ -25,6 +26,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D13574501C0CA8410064BD41 /* u_public.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = u_public.h; path = upublic/u_public.h; sourceTree = "<group>"; };
+		D13574521C0CA8D00064BD41 /* u_public.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = u_public.c; sourceTree = "<group>"; };
 		D13AB8471C00E0FB00B33E87 /* internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = internal.h; sourceTree = "<group>"; };
 		D13AB8481C00E5B600B33E87 /* econn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = econn.h; sourceTree = "<group>"; };
 		D14BF0691BFEF93900B31FA6 /* datastream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = datastream.h; sourceTree = "<group>"; };
@@ -48,6 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D13574511C0CA8450064BD41 /* upublic */ = {
+			isa = PBXGroup;
+			children = (
+				D13574501C0CA8410064BD41 /* u_public.h */,
+			);
+			name = upublic;
+			sourceTree = "<group>";
+		};
 		D1ED90E41BFDAFA0007FD8F9 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +94,7 @@
 				D14BF0691BFEF93900B31FA6 /* datastream.h */,
 				D13AB8471C00E0FB00B33E87 /* internal.h */,
 				D13AB8481C00E5B600B33E87 /* econn.h */,
+				D13574511C0CA8450064BD41 /* upublic */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -92,6 +104,7 @@
 			children = (
 				D14BF06A1BFEFAA800B31FA6 /* datastream.c */,
 				D1ED90FA1BFDB0CF007FD8F9 /* binread.c */,
+				D13574521C0CA8D00064BD41 /* u_public.c */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -154,6 +167,7 @@
 			files = (
 				D1ED90F11BFDAFA0007FD8F9 /* main.c in Sources */,
 				D14BF06B1BFEFAA800B31FA6 /* datastream.c in Sources */,
+				D13574531C0CA8D00064BD41 /* u_public.c in Sources */,
 				D1ED90FB1BFDB0CF007FD8F9 /* binread.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
