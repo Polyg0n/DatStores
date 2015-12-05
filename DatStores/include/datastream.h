@@ -162,6 +162,9 @@ volatile ubyte_t ASM
 (cbyte_t __inst, cbyte_t *__op, cbyte_t *__reg_dest, cbyte_t *__reg_src);
 
 
+volatile ubyte_t _U_ASM
+(cbyte_t *_pass_inst);
+
 /**
  * \brief Move operational word
  *

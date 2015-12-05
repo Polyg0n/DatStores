@@ -1,6 +1,12 @@
 #ifndef TYPES_H
 #define TYPES_H
 
+#define VECSTK_DEFAULT 255
+
+#if !defined(bool)
+#   include <stdbool.h>
+#endif
+
 typedef size_t packed_t;
 typedef size_t masksize_t;
 typedef int BOOL;
@@ -13,6 +19,15 @@ typedef          short word_t;
 typedef unsigned char  ubyte_t;
 typedef          char  byte_t;
 typedef const char     cbyte_t;
+typedef          bool  uboolean;
+
+
+typedef struct
+{
+    int l[VECSTK_DEFAULT];
+    int r[VECSTK_DEFAULT];
+} vec2d;
+
 
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"

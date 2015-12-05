@@ -9,14 +9,19 @@
 #include <stdio.h>
 
 #include "include/datastream.h"
+#include "include/upublic/u_public.h"
 
 int main(int argc, const char * argv[]) {
     char exitc;
     while (exitc != 'Y' || exitc != 'y') {
+/*      
         printf("Enter command to pass > ");
         char comd;
         scanf("%s", &comd);
-        systempoint(&comd);
+        systempoint(&comd); 
+ */
+
+        PublicCreationCC(2, false);
         printf("Run command structure again? > ");
         scanf("%s", &exitc);
         
