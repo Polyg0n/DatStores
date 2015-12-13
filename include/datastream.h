@@ -85,7 +85,7 @@ struct datbox
     word_t         _boxlen;         // Data length per box
     packed_t       _nil_formats;    // Nil-able formats
     word_t         _system;         // System data
-} __attribute__((packed));          // Pack this S.O.B
+};
 
 
 //  Field sectors
@@ -102,14 +102,14 @@ struct _fieldsec
     #endif
 };
 
-#pragma mark - String Controllers
+
 extern int  initstr(cbyte_t *cvcmd[]);                //  Init a string space
 extern int  desstr(cbyte_t *cvcmd[]);                 //  Destroy a string space
 extern void movname(char *_virtual, char *_vrmove);   //  Move typename to another space via its name
 
 
 
-#pragma mark - System/Process Handlers
+
 // INTERNAL:
 long procstore(struct datbox *box, packed_t packlen_addr);
 
@@ -135,7 +135,7 @@ BOOL systempoint(const char *__inst);
 //                                                     //
 /////////////////////////////////////////////////////////////////////////////////
 
-#pragma mark - Low Level Controllers
+
 
 
 /*
@@ -192,7 +192,7 @@ extern uword_t _move_lendef
 extern byte_t cmpbyte
 (char* __byte, char* __byte_cmp);               // Compare byte sequence
 
-#pragma mark -
+
 
 
 
