@@ -38,18 +38,18 @@ typedef enum
     //  USE AS PLACER FOR NO OPERATION IN STREAM
     OP_NO_OP     = 0xCCFF,  // OP has no instruction
     OP_NO_READ   = 0x00,    // OP has no reading at the moment
-    
+
     OP_READ_FULL = 0x01,    // OP read full instruction
     OP_READ_PART = 0x02,    // OP read part of the instruction
     OP_READ_SEED = 0x03,    // OP read the seed of the instruction
     OP_READ_POP  = 0x04,    // OP read the pop address
     OP_PUSH_SDD  = 0x05,    // OP read the Static Destruction Designator
-    
+
     OP_CALL_SEED = 0xA1,    // OP called instruction seed
     OP_CALL_FULL = 0xA2,    // OP called full instruction
     OP_CALL_DEAD = 0xA3,    // OP called a dead instruction (also could be missing/un-referenced address?)
     OP_CALL_PART = 0xA4,    // OP called part of the instruction
-    
+
     // USE WITH NO LINK
     OP_FULL_PART = 0xB1,    // OP read full part (i.e fragmented but complete fragment)
                             //                      ^ can piece together? ^
@@ -63,12 +63,12 @@ typedef struct
     uword_t     othread_jmp;            // Opaque jump addres
     uword_t     othread_cmp;            // Opaque compare address
     uword_t     othread_non_cond_jmp;   // Opaque non condition jump address
-    
+
     packed_t    othread_no_start_cond;  // Opqaue no starting conditional
-    
+
     BOOL        has_forward  : 1;       // Has forward address to compare before main processes handler
     BOOL        will_forward : 1;       // Will forward self address to compare with main process handler
-    
+
     //  Store same addr
     union {
         ubyte_t     _hold_pack;         // Holding package
@@ -93,8 +93,8 @@ struct _fieldsec
 {
     word_t          _fieldlen;  // Field data length
     word_t          _typelen;   // Type data length
-    
-    
+
+
     //  If we're running hot and mean
     #if defined(__DAT_LEAN_AND_MEAN__)
         dword_t     _fieldlen;
@@ -102,14 +102,20 @@ struct _fieldsec
     #endif
 };
 
-#pragma mark - String Controllers
+typedef struct
+{
+    word_t icrt_word_instances;
+    word_t icrt_string_instances;
+    word_t icrt_numeric_instances;
+} _ICRT_T;
+
+
 extern int  initstr(cbyte_t *cvcmd[]);                //  Init a string space
 extern int  desstr(cbyte_t *cvcmd[]);                 //  Destroy a string space
 extern void movname(char *_virtual, char *_vrmove);   //  Move typename to another space via its name
 
 
 
-#pragma mark - System/Process Handlers
 // INTERNAL:
 long procstore(struct datbox *box, packed_t packlen_addr);
 
@@ -135,11 +141,9 @@ BOOL systempoint(const char *__inst);
 //                                                     //
 /////////////////////////////////////////////////////////////////////////////////
 
-#pragma mark - Low Level Controllers
-
 
 /*
- *  If defined to "1" kernel will force wait of new commands 
+ *  If defined to "1" kernel will force wait of new commands
  *  instead of multithreading them.
  */
 #define _KERN_WAITS 0
@@ -192,8 +196,6 @@ extern uword_t _move_lendef
 extern byte_t cmpbyte
 (char* __byte, char* __byte_cmp);               // Compare byte sequence
 
-#pragma mark -
-
 
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -225,3 +227,4 @@ uword_t skaddr
 
 
 #endif /* DATASTREAM_H */
+
