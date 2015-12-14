@@ -33,6 +33,9 @@
 typedef void (*packlen)(int *__slen, int *__nlen);
 
 
+//  
+typedef void (*sysach)(int *__res, int *__anrk);
+
 typedef enum
 {
     //  USE AS PLACER FOR NO OPERATION IN STREAM
