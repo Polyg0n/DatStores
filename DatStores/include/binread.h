@@ -45,7 +45,7 @@ typedef struct
 typedef struct
 {
     unsigned int *BIN_MODE_SIMPLE; // Simple In/Out operating
-    unsigned int *BIN_MODE_MULTI;  // In/Out operating with system protection enabled
+    unsigned int *BIN_MODE_SAFE;  // In/Out operating with system protection enabled
 } bin_modes;
 
 

@@ -119,7 +119,6 @@ long procstore(struct datbox *box, packed_t packlen_addr);
  * \brief Point an instruction to a data stream
  *
  * \param *__inst - Instruction to pass
- * \param *__databoxes - Packages that contain current data in a stream
  *
  * \return 2 IF instruction did not pass due to errors
  * \return 1 IF instruction was passed but with warnings
@@ -146,7 +145,7 @@ BOOL systempoint(const char *__inst);
 
 
 //  Can operate on inline operations
-//  TODO: Monitor low level binary from I/O streams?
+//  TODO: <LN:148> Monitor low level binary from I/O streams?
 
 /**
  * \brief Insert ASM command to stream quickly via C-call
@@ -176,10 +175,6 @@ volatile ubyte_t _U_ASM
 extern int movword
 (word_t *_s1, word_t *_s2);                     // Move word to reg
 
-
-/**
- *
- */
 extern int delword
 (word_t *_s1, word_t *_s2);                     // Delete word to reg
 
@@ -197,9 +192,9 @@ extern byte_t cmpbyte
 
 
 //////////////////////////////////////////////////////////////////////////////////////
-//                                                     //
+//                                                     //                           //
 // END         Primary Low Level Controller Defs       //     Version: 1.0.1    END //
-//                                                     //
+//                                                     //                           //
 //////////////////////////////////////////////////////////////////////////////////////
 
 

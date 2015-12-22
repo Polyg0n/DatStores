@@ -29,6 +29,14 @@ typedef struct
 } vec2d;
 
 
+typedef struct
+{
+    unsigned int   R[256];
+    unsigned int   G[256];
+    unsigned int   B[256];
+             float A[1];    // 0->1
+} crt_color_t;
+
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"
 #define ANSI_COLOR_YELLOW  "\x1b[33m"

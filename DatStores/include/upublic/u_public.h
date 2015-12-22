@@ -27,6 +27,7 @@
 #include <unistd.h>
 
 #include "../types.h"
+#include "../internal.h"
 
 
 #define MAX_STRING_BUFFER 512
@@ -97,7 +98,7 @@ void PublicCreationCC(unsigned int pointalize, bool willCreate) {
 
 
 //
-//  <VOID>u_time(-><STRUCT>utime)
+//  <VOID>u_time(utbuf-><STRUCT>utime)
 /**
  * \brief Unity time function
  * \param *utbuf - Structure call for time constructs
@@ -107,9 +108,7 @@ void PublicCreationCC(unsigned int pointalize, bool willCreate) {
  */
 void u_time(struct utime *utbuf){
     for(utime_s i=0;i<utbuf->ssdv;i++){
-        if (i==utbuf->ssdv) {
-            break;
-        }
+        if (i==utbuf->ssdv) break;
     }
 }
 
@@ -126,25 +125,8 @@ uboolean UnityDepthPath(struct unitypath *up, uboolean sortHighFirst, uboolean v
 //
 // 
 /**
- *
+ * \brief Create construct for unity engine
  */
 uboolean UnityTime(struct utime *timesvc, uword_t *uTime);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #endif /* UPUBLIC_H */
